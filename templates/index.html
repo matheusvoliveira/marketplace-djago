@@ -1,0 +1,22 @@
+<form action="{% url 'add_database' %}" method="POST" enctype='multipart/form-data'>{% csrf_token %}
+    {% csrf_token %}
+    <label for="product">Product:</label>
+    <input type="text" name="product" id="product">
+
+    <label for="value">Value:</label>
+    <input type='number' name="value" id="value">
+
+    <label for="image">Image:</label>
+    <input type='file' name="image" id="image">
+
+
+    <button type="submit">Salvar</button>
+</form>
+
+{% for product in products %}
+    <h2>{{ product.product }}</h2>
+    <p>Value: {{ product.value }}</p>
+    <img src="{{ product.image.url }}" alt="Product Image">
+{% empty %}
+    <p>No products available.</p>
+{% endfor %}
